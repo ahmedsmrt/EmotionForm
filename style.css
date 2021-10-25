@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+section {
+    width: 100vw;
+    height: 100vh;
+    background-color: #E8A5A5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#form_wrap {
+    height: 65%;
+    width: 25%;
+    background-color:lightblue;
+    border-radius: 15px;
+}
+
+/* Text Styling
+Font-Family: 'Cardo', Serif;
+Font-Size: 48px;
+Font-Family: 'Libre Franklin', Sans-Serif;
+Font-Size: 14px; */
+
+#form_wrap h1 {
+    text-align: center;
+    Font-Family: 'Cardo', Serif;
+    Font-Size: 1.75rem;
+    margin: 5%;
+}
+
+#question {
+    display: inline-block;
+    Font-Family: 'Libre Franklin', Sans-Serif;
+    font-size: 1.1rem;
+    padding: 5%;
+}
+
+#answer {
+    width: 90%;
+    height: 300px;
+    border: none;
+    position: relative;
+    box-shadow: 1px 1px 1px #999;
+    border-radius: 8px;
+    margin: 5%;
+    font-size: 1.15rem;
+    line-height: 1.5rem;
+    padding: 2%;
+}
+
+
+
+#btn_sub {
+    margin: 5%;
+    width: 90%;
+    padding: 3%;
+    border: none;
+    border-radius: 10px;
+    background-color: #9C9B76;
+    font-size: 1.05rem;
+}
+
+#btn_sub:hover {
+    background-color: #69684F;
+    color: lightgrey;
+}
+
+
+label {
+  display:inline-block;
+  margin-bottom:4px;
+  position: relative; /* to contain absolute elements */
+  padding-left:30px; /* free space for custom radio button */
+  left: 10px;
+  cursor: pointer;
+}
+/* hide default radio button  */
+label input[type=radio] {
+  position: absolute; /* prevent taking any space */
+  /* cross-browser hidingg */
+  opacity: 0;
+  width:0; 
+  height:0;
+  float: left;
+  
+}
+/* custom radio button */
+label span {
+  position: absolute;
+  /* position to the free space in <label> */
+  top:0;
+  left:5px;
+  width:20px; 
+  height:20px;
+  background-color: #ddd;
+  border-radius: 50%;
+  transition: .3s background-color; /* slight transition */
+}
+/* the check icon */
+label span:after {
+  content: "";
+  position: absolute;
+  display: none;
+  
+  /* middle */
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  background-color:#fff;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+}
+label:hover span {
+  background-color: #ccc;
+}
+
+/**** Here's the trick ***/
+label input:checked ~ span {
+  background-color: #2eaadc;
+}
+label input:checked ~ span:after {
+  display:block;
+}

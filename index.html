@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Cardo|Libre+Franklin" rel="stylesheet">
+    <title>Emotion Search</title>
+</head>
+<body>
+    <section>
+        <div id="form_wrap">
+            <h1>Tell Me how you Feel.</h1>
+
+            <form action="" onsubmit="return false">
+                <label for="question" id="question">Pick out a moment from your day that was emotionally charged. What emotions did you feel and why?</label>
+                <label for="happy">Happy
+                     <input type="radio" id="happy" checked class="primaryRadio" name="emotions" value="happy">
+                    <span></span>
+                </label>
+                <label for="sad">Sad
+                    <input type="radio" id="sad" name="emotions"  class="primaryRadio" value="sad">
+                    <span></span>
+                </label>
+                <label for="anger">Anger
+                    <input type="radio" id="anger" name="emotions"  class="primaryRadio" value="anger">
+                    <span></span>
+                </label>
+                <label for="fear">Fear
+                    <input type="radio" id="fear" name="emotions"  class="primaryRadio" value="fear">
+                    <span></span>
+                </label>
+                <label for="surprise">Surprise
+                    <input type="radio" name="emotions"  id="surprise" class="primaryRadio" value="surprise">
+                    <span></span>
+                </label>
+                <label for="disgust">Disgust
+                    <input type="radio" name="emotions"  id="disgust" class="primaryRadio" value="disgust">
+                    <span></span>
+                </label><br>
+                <textarea type="textarea" rows="10" cols="50" id="answer" placeholder="It's okay to cry..."></textarea><br>
+                <input type="submit" value="Submit" id="btn_sub">
+            </form>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
