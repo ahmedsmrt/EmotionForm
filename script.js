@@ -42,7 +42,7 @@ const txtArea = document.getElementById("answer");
 
 const textFunc = () => {
     txtMessage.push(txtArea.value);
-    console.log(txtMessage);   
+    alert(txtMessage);   
 }
 
 
