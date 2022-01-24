@@ -1,48 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Cardo|Libre+Franklin" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Cardo|Libre+Franklin"
+      rel="stylesheet"
+    />
+        <link rel="shortcut icon" type="image/x-icon" href="https://img.icons8.com/external-icongeek26-flat-icongeek26/344/external-diary-retro-80s-icongeek26-flat-icongeek26.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    
+    <script src="https://kit.fontawesome.com/12a01bf1d5.js" crossorigin="anonymous"></script>
     <title>Emotion Search</title>
-</head>
-<body>
+  </head>
+  <body>
     <section>
-        <div id="form_wrap">
-            <h1>Tell Me how you Feel.</h1>
-
-            <form action="" onsubmit="return false">
-                <label for="question" id="question">Pick out a moment from your day that was emotionally charged. What emotions did you feel and why?</label>
-                <label for="happy">Happy
-                     <input type="radio" id="happy" checked class="primaryRadio" name="emotions" value="happy">
-                    <span></span>
-                </label>
-                <label for="sad">Sad
-                    <input type="radio" id="sad" name="emotions"  class="primaryRadio" value="sad">
-                    <span></span>
-                </label>
-                <label for="anger">Anger
-                    <input type="radio" id="anger" name="emotions"  class="primaryRadio" value="anger">
-                    <span></span>
-                </label>
-                <label for="fear">Fear
-                    <input type="radio" id="fear" name="emotions"  class="primaryRadio" value="fear">
-                    <span></span>
-                </label>
-                <label for="surprise">Surprise
-                    <input type="radio" name="emotions"  id="surprise" class="primaryRadio" value="surprise">
-                    <span></span>
-                </label>
-                <label for="disgust">Disgust
-                    <input type="radio" name="emotions"  id="disgust" class="primaryRadio" value="disgust">
-                    <span></span>
-                </label><br>
-                <textarea type="textarea" rows="10" cols="50" id="answer" placeholder="It's okay to cry..."></textarea><br>
-                <input type="submit" value="Submit" id="btn_sub">
-            </form>
+        <aside id="modal-container">
+          <div class="modal-overlay">
+            <div id="modal-note-container">
+              <div class="note-collection-container">
+                <div id="notes-collection-anchor" class="note-collection-wrap">
+                  <!-- <div class="notes note-1">
+                    <text>January, 12th 2022</text>
+                    <div id="line-wrap">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <span class="primary-emotion-preview"></span>
+                    <p class="preview-text">Hello this is some preview text nyukkah....</p>
+                  </div>
+                   -->
+                </div>
+              </div>
+              <i class="far fa-times-circle"></i>
+              <div class="modal-note-wrap">
+                <span class="date"></span>
+                <div class="primary-emotion-note">
+                  <p id="primary-para"><u>Primary Emotion</u>:<span class="primary-emotion-note-svg"></span></p>
+                </div>
+                <i class="delete far fa-trash-alt"></i>
+                <p  id="note-para"></p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      <div id="notebook_wrap">
+        <div id="messageQ">
+                    <div class="message">
+                                 <div id="corkBoardWrap" class="message-container">
+              <h2 id="journal-anchor">Journal Entries</h2>
+              <i id="question-mark-mini" class="far fa-question-circle"></i>
+              <div class="cork-board-notes">
+                <span class="cork-note"></span>
+                <span class="cork-note"></span>
+                <span class="cork-note"></span>
+                <span class="cork-note"></span>
+                <span class="cork-note"></span>
+                <span class="cork-note"></span>
+              </div>
+           </div>
+          </div>
+          <div class="message">
+           <div id="definitionWrap" class="message-container">
+              <h2>Definitions</h2>
+            <p class="text-focus-in">
+              <span id="word-def"></span><span id="definition"></span>
+            </p>
+           </div>
+          </div>
+          <div class="message">
+            <div id="quoteWrap" class="message-container">
+              <h2>Memorable Quotes</h2>
+            <p>
+              <span id="quote"></span>
+            </p>
+            </div>
+          </div>
         </div>
+        <div id="form_wrap">
+          <h1>Notes with  Nuance</h1>
+          <p id="toolTip" data-tooltip-location="top"  data-tooltip="To get started, click on the primary emotion emoji that corresponds with how you felt. Once you;ve done that you'll have a bunch of secondary (gold colored notes) and tertiary (green colored notes) pop up on the side of the page. Feel free to click on any of the emotions for a definition and complimentary quote! Then once you those emotions start rising to the surface, start writing and press Enter or click the small book icon in the bottom right corner to save your entry. With that you're all finished and hopefully got somethings off your chest! Happy Journaling :)"><i id="question-mark" class="far fa-question-circle"></i></p>
+          <form id="form-section" action="" onsubmit="textFunc()">
+            <input type="button" value="" id="btn_sub" />
+            <label for="question" id="question"
+              >Pick out a moment from your day that you want to be mindful about.
+              What emotions can you recall feeling and why? <br /><br
+            /></label>
+            <div id="radio_btn_wrap">
+              <label value="happy" class="primaryRadio emoji_label" for="happy"
+                ><b id="emotion-text-1">Happy</b>
+              </label>
+              <span id="happyEmoji">happy</span>
+              <label value="sad" class="primaryRadio emoji_label" for="sad"
+                ><b id="emotion-text-2">Sad</b>
+              </label>
+              <span id="sadEmoji">sad</span>
+              <label value="anger" class="primaryRadio emoji_label" for="anger"
+                ><b id="emotion-text-3">Anger</b>
+              </label>
+              <span id="angryEmoji">anger</span>
+              <label  value="fear" class="primaryRadio emoji_label" for="fear"
+                ><b id="emotion-text-4">Fear</b>
+              </label>
+              <span id="fearEmoji">fear</span>
+              <label  value="surprise" class="primaryRadio emoji_label" for="surprise"
+                ><b id="emotion-text-5">Surprise</b>
+              </label>
+              <span id="surpriseEmoji">surprise</span>
+              <label value="disgust" class="primaryRadio emoji_label" for="disgust"
+                ><b id="emotion-text-6">Disgust</b>
+              </label>
+              <span id="disgustEmoji">disgust</span>
+            </div>
+          
+            <textarea
+              type="textarea"
+              rows="10"
+              cols="50"
+              id="answer"
+              placeholder="It's okay to cry..."
+            ></textarea>
+          </form>
+        </div>
+        <div id="side_bar">
+          <div id="secondary_wrap"></div>
+          <div id="tertiary_wrap"></div>
+        </div>
+      </div>
+      <div id="overlay"></div>
+      </div>
     </section>
-    <script src="script.js"></script>
-</body>
+    <script type="module" src="script.js"></script>
+  </body>
 </html>
