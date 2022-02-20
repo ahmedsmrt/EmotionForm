@@ -77,7 +77,7 @@ const createParagraph = (el) => {
   return paragraph;
 };
 
-const createOuterDiv = (date, previewText, primaryEmotion) => {
+const createOuterDiv = (date, previewText, primaryEmotion, noteId) => {
   const divOne = document.createElement("div");
   divOne.classList.add("notes");
 
@@ -92,30 +92,59 @@ const createOuterDiv = (date, previewText, primaryEmotion) => {
     noteParagraph.innerHTML = previewText;
     noteDate.innerHTML = date;
     primaryNoteEmote.style.content = `url(././images/${primaryEmotion}.svg)`;
+    modalNoteContainer.style.display = "block";
+
+    // Delete functionality
+    deleteFunction(noteId);
   });
+  divOne.setAttribute("value", noteId);
   console.log(divOne);
   return divOne;
 };
 
 const deleteBtn = document.querySelector(".delete");
 const modalContainer = document.querySelector("#modal-container");
+const modalNoteContainer = document.querySelector(".modal-note-wrap");
 const noteDate = document.querySelector(".date");
 const primaryNoteEmote = document.querySelector(".primary-emotion-note-svg");
 const noteParagraph = document.querySelector("#note-para");
-
-const appendElements = (dateText, preview, primaryEmote) => {
+let noteArray = [];
+const appendElements = (dateText, preview, primaryEmote, noteId) => {
   const parent = document.getElementById("notes-collection-anchor");
   parent.insertAdjacentElement(
     "beforeend",
-    createOuterDiv(dateText, preview, primaryEmote)
+    createOuterDiv(dateText, preview, primaryEmote, noteId)
   );
+
+  noteArray.push(noteId);
 };
 
-const journalAnc = document.getElementById("journal-anchor");
+const journalAnc = document.getElementById("corkBoardWrap");
 
 journalAnc.addEventListener("click", () => {
   modalContainer.style.display = "block";
 });
+
+const deleteFunction = (el) => {
+  let tempIndex = el;
+  deleteBtn.addEventListener("click", () => {
+    const parent = document.getElementById("notes-collection-anchor");
+
+    for (let i = 0; i < noteArray.length; i++) {
+      let notesIndex = noteArray[i];
+      if (tempIndex == notesIndex) {
+        remove(ref(db, tempIndex));
+        let tempMiniIndex = i - 1;
+        noteArray.splice(tempMiniIndex, 1);
+        console.log(noteArray);
+        let childJawn = parent.childNodes[i + 1];
+        parent.removeChild(childJawn);
+        console.log(childJawn);
+        modalNoteContainer.style.display = "none";
+      }
+    }
+  });
+};
 
 // testFuncInsert();
 
@@ -1051,6 +1080,7 @@ const uploadData = () => {
     getLastEmotion(emoteArrayData);
     console.log("this works");
     set(ref(db, `Notes/note-${noteNumber}`), {
+      noteId: `Notes/note-${noteNumber}`,
       textContent: txtArea.value,
       date: currentTimeStamp,
       emotion: `${emoteArrayData[emoteArrayData.length - 1]}`,
@@ -1059,7 +1089,8 @@ const uploadData = () => {
         appendElements(
           currentTimeStamp,
           txtArea.value,
-          `${emoteArrayData[emoteArrayData.length - 1]}`
+          `${emoteArrayData[emoteArrayData.length - 1]}`,
+          `Notes/note-${noteNumber}`
         );
         console.log("Data saved!");
       })
@@ -1071,6 +1102,7 @@ const uploadData = () => {
       textContent: txtArea.value,
       date: currentTimeStamp,
       emotion: `${emoteArrayData[emoteArrayData.length - 1]}`,
+      noteID: `Notes/note-${noteNumber}`,
     });
     console.log(closingArray);
   }
@@ -1094,7 +1126,7 @@ const windowClose = () => {
 let currentEmotion;
 
 submitBtn.addEventListener("click", () => {
-  if (txtArea.innerHTML.length < 300) {
+  if (txtArea.innerHTML.length < 5) {
     alert("Are you sure you are done");
   } else {
     uploadData().then;
@@ -1126,7 +1158,7 @@ const typeTimeout = () => {
       if (e.code === "Enter" && typing === false) {
         e.preventDefault();
 
-        if (txtArea.innerHTML.length < 300) {
+        if (txtArea.innerHTML.length < 5) {
           console.log(tempText);
 
           alert("Are you sure you are done");
