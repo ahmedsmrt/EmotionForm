@@ -219,18 +219,19 @@ label input[type="radio"] {
   font-weight: 800;
   font-family: "Poppins", sans-serif;
   z-index: 0;
+  user-select: none;
 }
 
 #overlay {
   position: fixed;
   background: transparent;
-  opacity: 0.1;
-  height: 620px;
+  height: 690px;
   min-width: 650px;
   width: 650px;
-  top: 45%;
-  left: 22%;
-  display: none;
+  top: 40%;
+  left: 35%;
+  z-index: 10;
+  /* display: none; */
 }
 
 #answer {
@@ -375,7 +376,7 @@ Font-Size: 14px; */
   background-size: cover;
   background-repeat: no-repeat;
   font-weight: 500;
-  background-position: 50% 110%;
+  background-position: 50% 103%;
   transition: 0.5s;
   user-select: none;
 }
@@ -493,15 +494,6 @@ Font-Size: 14px; */
 
 #corkBoardWrap h2:hover {
   transform: scale(0.8);
-}
-
-#question-mark-mini {
-  position: absolute;
-  right: 35px;
-  top: 35px;
-  font-size: 1.3rem;
-  transition: 0.3;
-  cursor: pointer;
 }
 
 #question-mark-mini:hover {
@@ -1095,7 +1087,7 @@ Font-Size: 14px; */
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background-color: hsl(180, 25%, 25%, 0.9);
+  background-color: hsla(220, 13%, 18%, 0.9);
 }
 
 #modal-note-container .fa-times-circle {
@@ -1105,6 +1097,7 @@ Font-Size: 14px; */
   right: 2%;
   transition: 0.3s;
   cursor: pointer;
+  color: rgb(180, 52, 52);
 }
 
 /* Side bar Note Container Styling */
@@ -1239,6 +1232,7 @@ Font-Size: 14px; */
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+  display: none;
 }
 
 #modal-note-container .modal-note-wrap .delete {
